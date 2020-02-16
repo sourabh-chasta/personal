@@ -1,0 +1,50 @@
+<table class="table" border=2>
+  <div>
+    <h4 class="mat-display-5">Select the direction for the drone to move</h4>
+  </div>
+  <br>
+  <mat-form-field>
+    <mat-select [(ngModel)]="move">
+      <mat-option value="">--Select--</mat-option>
+      <mat-option *ngFor="let d of direction" [value]="d">{{d}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <br>
+  <br>
+
+<div *ngFor="let m of rows">&nbsp;
+  <span>{{m}}</span>&nbsp;
+    <span *ngFor="let n of columns" >&nbsp;
+      <span *ngIf="check(m,n); else non">
+          <span *ngIf = "flag == 1" >
+            <button mat-raised-button (click)="select(m,n)" id="colored">{{"^"}}</button>
+          </span>
+          <span *ngIf = "flag == 2">
+            <button mat-raised-button (click)="select(m,n)" id="colored">{{"v"}}</button>
+          </span>
+          <span *ngIf = "flag == 3">
+            <button mat-raised-button (click)="select(m,n)" id="colored">{{"<"}}</button>
+          </span>
+          <span *ngIf = "flag == 4">
+            <button mat-raised-button (click)="select(m,n)" id="colored">{{">"}}</button>
+          </span>
+      </span>
+      <ng-template #non>
+        <span >
+          <button mat-raised-button (click)="select(m,n)"  class="selected">D </button>
+        </span>
+      </ng-template>
+    </span>
+  </div>
+  <br>
+  <br>
+  <div  style="text-align:center">
+    <button class="btn btn-primary" type="reset" (click)="reset()">Reset</button>
+  </div>
+
+</table>
+
+
+
+
